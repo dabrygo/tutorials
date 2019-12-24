@@ -22,6 +22,7 @@ const IndexPage = () => {
    */
 
   async function mapEffect({ leafletElement } = {}) {
+    if ( !leafletElement ) return;
   }
 
   const mapSettings = {

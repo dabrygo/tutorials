@@ -1,4 +1,4 @@
-import React;
+import React from 'react';
 import Helmet from 'react-helmet';
 import L from 'leaflet';
 
@@ -23,6 +23,15 @@ const IndexPage = () => {
 
   async function mapEffect({ leafletElement } = {}) {
     if ( !leafletElement ) return;
+    let route, routeJson;
+    try {
+      // TODO Update to 2019
+      route = await fetch('https://firebasestorage.googleapis.com/v0/b/santa-tracker-firebase.appspot.com/o/route%2Fsanta_en.json?alt=media&2018b');
+      routeJson = await route.json();
+    } catch(e) {
+      console.log('Failed to find Santa!: ${e}');
+    }
+    console.log('routeJson', routeJson);
   }
 
   const mapSettings = {

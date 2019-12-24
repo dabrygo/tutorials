@@ -26,7 +26,7 @@ const IndexPage = () => {
     let route, routeJson;
     try {
       // TODO Update to 2019
-      route = await fetch('https://firebasestorage.googleapis.com/v0/b/santa-tracker-firebase.appspot.com/o/route%2Fsanta_en.json?alt=media&2018b');
+      route = await fetch('https://firebasestorage.googleapis.com/v0/b/santa-tracker-firebase.appspot.com/o/route%2Fsanta_en.json?alt=media&2019b');
       routeJson = await route.json();
     } catch(e) {
       console.log('Failed to find Santa!: ${e}');

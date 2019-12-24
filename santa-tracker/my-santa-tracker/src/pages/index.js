@@ -52,6 +52,17 @@ const IndexPage = () => {
     }
     const lastKnownDestination = destinationsWithPresents[destinationsWithPresents.length - 1]
     console.log(lastKnownDestination)
+    const santaLocation = new L.LatLng( lastKnownDestination.location.lat, lastKnownDestination.location.lng);
+    const santaMarker = L.marker(santaLocation, {
+      icon: L.divIcon({
+        className: 'icon',
+        html: `<div class="icon-santa">'\ud83c\udf85'</div>`,
+        iconSize: 50
+      })
+    });
+
+    santaMarker.addTo(leafletElement);
+
   }
 
   const mapSettings = {

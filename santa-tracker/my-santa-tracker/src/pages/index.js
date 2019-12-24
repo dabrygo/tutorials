@@ -11,10 +11,10 @@ const LOCATION = {
   lng: -77.0369
 };
 const CENTER = [LOCATION.lat, LOCATION.lng];
-const DEFAULT_ZOOM = 2;
+const DEFAULT_ZOOM = 1;
+
 
 const IndexPage = () => {
-
   /**
    * mapEffect
    * @description Fires a callback once the page renders
@@ -63,6 +63,25 @@ const IndexPage = () => {
 
     santaMarker.addTo(leafletElement);
 
+    // Create a set of LatLng coordinates that make up Santa's route
+    const santasRouteLatLngs = destinationsWithPresents.map(destination => {
+      const { location } = destination;
+      const { lat, lng } = location;
+      return new L.LatLng( lat, lng );
+    });
+
+    // Utilize Leaflet's Polyline to add the route to the map
+
+    const santasRoute = new L.Polyline( santasRouteLatLngs, {
+      weight: 2,
+      color: 'green',
+      opacity: 1,
+      fillColor: 'green',
+      fillOpacity: 0.5
+    });
+
+    // Add route to the map
+    santasRoute.addTo(leafletElement);
   }
 
   const mapSettings = {

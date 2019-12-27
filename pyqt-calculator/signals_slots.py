@@ -2,6 +2,7 @@
 
 '''Signals and slots example.'''
 
+import functools
 import sys
 
 from PyQt5.QtWidgets import QApplication
@@ -17,13 +18,26 @@ def greeting():
   else:
     msg.setText("Hello World!")
 
+def greet2(who):
+  """Slot function."""
+  if msg.text():
+    msg.setText("")
+  else:
+    msg.setText(f"Hello {who}!")
+
+
+
 app = QApplication(sys.argv)
 window = QWidget()
 window.setWindowTitle('Signals and slots')
 layout = QVBoxLayout()
 
 btn = QPushButton('Greet')
-btn.clicked.connect(greeting) # Connect clicked to greeting()
+#btn.clicked.connect(greeting) # Connect clicked to greeting()
+#btn.clicked.connect(functools.partial(greet2, "World"))
+btn.clicked.connect(lambda x: greet2("World"))
+
+
 
 layout.addWidget(btn)
 msg = QLabel('')
